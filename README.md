@@ -11,43 +11,105 @@ Also Extract the following Parameters
 * Bandwidth
 * Power
 
-#### [Prerequisites and Theory](https://www.allaboutcircuits.com/technical-articles/introduction-to-the-mosfet-common-source-amplifier/) 
-Analog circuits are everywhere, and amplifiers are a part of basically every analog circuit. MOSFETs make excellent amplifying devices, which is why there are multiple single-stage amplifier topologies based around them. These are differentiated based on which transistor terminal is the input and which is the output.
+##### NOTE: Parts of theory and prerequisite is taken from the webpage linked below
+#### [Prerequisites and Theory](https://www.allaboutcircuits.com/technical-articles/introduction-to-the-mosfet-common-source-amplifier/)  {Follow this link for more info}
+# Common-Source (CS) Amplifier Overview
 
-In this article, we’ll discuss the common-source (CS) amplifier, which uses the gate as its input terminal and the drain as its output. The source terminal is common to both the input and output in terms of the AC signal, hence the name common-source. 
-##### Common-Source Amplifier With a Resistor Load
-![image](https://github.com/user-attachments/assets/e9db85d3-6b86-489f-bc76-45a591712ec0)
-###### Large-Signal Operation of the CS Amplifier With Resistor Load
-![image](https://github.com/user-attachments/assets/72ffa374-5021-4c25-b239-c6099b1ac53d)
+## Introduction
 
-Examining the figure more closely, we see that the following occurs as VIN increases from zero:
-* When we start increasing VIN from zero, M1 remains off and VOUT remains at VDD until VIN nears the threshold voltage (VTH).
-* At this point, M1 begins to conduct current. That causes a small voltage drop across the load resistor (RL), which in turn causes VOUT to decrease slightly.
-* When VIN reaches VTH, M1 turns on. Because VOUT is greater than (VIN – VTH), M1 is biased in saturation.
-* M1 remains in saturation as VIN increases until VOUT = VIN – VTH.
-* Once VIN has increased to this point, M1 goes into the linear region and VOUT continues to decrease to nearly zero.
+Amplifiers are a fundamental part of analog circuit design, and MOSFETs serve as excellent amplification devices. Among the various single-stage amplifier topologies, the **common-source (CS) amplifier** is widely used. It is characterized by having the **gate as the input, the drain as the output, and the source as the common terminal** for AC signals.
 
-MOSFETs operate best as amplifiers when saturated—if the MOSFET falls out of saturation, the amplifier performance degrades rapidly. For that reason, we can consider the CS amplifier’s effective operating range to cover only the values of VOUT produced in saturation. In Figure 3, we can see that these output voltages range from when M1 turns on (VIN = VTH) to when M1 goes into the linear region (VOUT = VIN – VTH). Since VOUT = VDD – IDRL, we must minimize the product of IDRL to maximize the operating range of the amplifier.
+This document covers two common implementations of the CS amplifier:  
+- **CS Amplifier with a Resistor Load**
+- **CS Amplifier with a Current Source Load**
 
-###### Small-Signal Operation of the CS Amplifier With Resistor Load
-Small-signal definitions are only valid when the transistor is operated in saturation and can therefore be estimated as a linear device. However, as we stated above, this encompasses the entire effective operating range of our amplifier. 
+---
 
-![image](https://github.com/user-attachments/assets/34b8c469-859b-4631-8000-44a5fa32670c)
+## CS Amplifier with a Resistor Load
 
-Because the body of our circuit is shorted to the source terminal, gmbvbs = 0. We can calculate the small-signal voltage gain using Kirchhoff’s voltage and current laws:
+In this configuration, a **resistor** acts as the load at the drain terminal.
 
-$$ \frac{vout}{ro||RL} = −gmvin → \frac{vout}{vin} = −gm(ro||RL) $$
+### Large-Signal Operation
 
-If we ignore the channel length modulation, this would imply infinite output resistance (ro) for the MOSFET. We can then simplify the gain equation to just gmRL. If we want to maximize the output gain, we should maximize gm and/or RL. Because gm is proportional to ID, however, maximizing the gain comes at the cost of the amplifier’s operating range.
-Interestingly, if we multiply the output resistance by the transconductance of the MOSFET (gm), we obtain the small-signal gain we found in Equation 1. Furthermore, the gain of the CS amplifier then becomes equal to the resistance seen at the drain of M1 divided by the resistance seen at the source of M1, which is the reciprocal of the transconductance $\frac{1}{g_m}$. Therefore, from here on out we can generically define the voltage gain of all CS amplifiers as:
+The behavior of the circuit changes as the input voltage (VIN) varies:
 
-$$ A_v = −G_mR_{Out} $$
+- When VIN is near zero, the MOSFET remains off, and the output voltage (VOUT) is at VDD.
+- As VIN approaches the **threshold voltage (VTH)**, the MOSFET starts conducting, leading to a small voltage drop across the load resistor (RL), causing VOUT to decrease.
+- When VIN exceeds VTH, the MOSFET enters **saturation**, and the amplifier operates effectively.
+- As VIN continues to increase, the MOSFET eventually enters the **linear region**, causing a further drop in VOUT.
 
-where Gm is the amplifier’s transconductance.
+Since MOSFETs function best as amplifiers in saturation, the effective **operating range** of the amplifier is limited to values where the transistor remains in saturation.
 
-Because of the trade-off between high gain and operating range, the resistor load isn’t necessarily the best choice for a CS amplifier. In addition, large resistors are needed for large gains, and these result in very large devices on-chip. The resistance value can also change up to 20% due to process variations. For all of these reasons, it’s worth looking at load options that don’t require passive devices.
+#### Circuit Diagram:
+![CS Amplifier with Resistor Load](https://github.com/user-attachments/assets/e9db85d3-6b86-489f-bc76-45a591712ec0)
 
-##### Common-Source Amplifier With a Diode-Connected Load
+#### Transfer Characteristics:
+![Large-Signal Characteristics](https://github.com/user-attachments/assets/72ffa374-5021-4c25-b239-c6099b1ac53d)
+
+### Small-Signal Operation
+
+For small-signal analysis, the MOSFET can be approximated as a **linear device** in saturation.
+
+The **voltage gain (Av)** is given by:
+
+$$A_v = -g_m (r_o || R_L)$$
+
+where:
+-  $g_m$ = transconductance of the MOSFET  
+-  $r_o$ = output resistance of the MOSFET  
+-  $R_L$ = load resistance  
+
+If **channel length modulation** is ignored, $r_o$ becomes very large, simplifying the gain to:
+
+$$A_v \approx -g_m R_L$$
+
+This means the gain increases with higher transconductance or a larger load resistor. However, increasing **R_L** leads to larger chip area and variations in resistance due to process changes, making it less practical for integrated circuits.
+
+#### Small-Signal Model:
+![Small-Signal Model](https://github.com/user-attachments/assets/34b8c469-859b-4631-8000-44a5fa32670c)
+
+---
+
+## CS Amplifier with a Current Source Load
+
+To overcome the limitations of a resistor load, **a current source can be used instead**.
+
+#### Circuit Diagram:
+![CS Amplifier with Current Source Load](https://github.com/user-attachments/assets/73a2ca8b-b223-4be7-af89-1674b945fc5f)
+
+### Small-Signal Analysis
+
+The **small-signal gain** for a CS amplifier with a current source load is:
+
+$$A_v = -g_{m,n} (r_{o,n} || r_{o,p})$$
+
+where:
+- $g_{m,n}$ = transconductance of NMOS  
+- $r_{o,n}$, $r_{o,p}$ = output resistances of NMOS and PMOS transistors  
+
+Since $r_{o,p}$ is much larger than **$1/g_{m,p}$**, this configuration provides **higher gain** than a resistor-loaded amplifier.
+
+### Operating Region
+
+For proper operation, the circuit must satisfy:
+
+$$V_{TH,N} \leq V_{IN} \leq V_{OUT} + V_{TH,N}$$
+
+$$V_{IN} - V_{TH,N} \leq V_{OUT} \leq V_{DD} - V_{B} - |V_{TH,P}|$$
+
+A lower bias voltage **increases the operating range** but reduces the resistance of the PMOS load, which decreases gain. The trade-off between gain and operating range makes this configuration more suitable for applications requiring higher amplification at the cost of design complexity.
+
+---
+
+## Conclusion
+
+- A **CS amplifier with a resistor load** offers a straightforward design but has limitations in gain and stability.  
+- A **CS amplifier with a current source load** provides higher gain but requires careful biasing.  
+
+The choice between these configurations depends on the application and design constraints.
+
+
+
 #### <ins>Analysis of CS Amplifier with a Resistor Load</ins>
 In this section we will analyse the CS Amplifier with a resistive load, for that we will go ahead and install a simulation software more specifically LTSpice and assemble a very basic CS Amplifier Circuit as shown below, choose **NMOS4**, it has 4 terminals namely **Gate (G)**, **Drain (D)**, **Source (S)** and **Body (B)** terminals. Connect the Body terminal to Source of the MOSFET. Also add voltage sources and resistance, add supply for 1.8 V and set gate voltage to be around 50% of the supply voltage i.e. 0.9 V 
 
