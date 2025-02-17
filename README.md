@@ -57,9 +57,10 @@ In this section we will analyse the CS Amplifier with a resistive load, for that
 1. Create a new Experiment Workspace
 2.  Enter a spice directive by clicking on **.t** option on the ribbon
 <code> .lib tsmc018.lib </code> This specifies the BSIM3 Model of the MOSFET, if you stored this file in some other location specify that in the command
-3. **Calculation**: We need to calculate the current according to our power budget since we have both supply voltage and power budget we can calculate the current from $I = \frac{P}{V}$. We will get our maximum permissible current to be $27.77 \mu A$
-4. Now we can start finding appropriate **Aspect Ratio** for our MOSFET, we will take a range and combination of values for **W (width)** and **L (length)** of the MOSFET
-5. After getting a suitable value we will perform **Transient** and **AC Analysis**
+3. Add the transistor **NMOS4** and Change the name of the transistor to **CMOSN**
+4. **Calculation**: We need to calculate the current according to our power budget since we have both supply voltage and power budget we can calculate the current from $I = \frac{P}{V}$. We will get our maximum permissible current to be $27.77 \mu A$
+5. Now we can start finding appropriate **Aspect Ratio** for our MOSFET, we will take a range and combination of values for **W (width)** and **L (length)** of the MOSFET
+6. After getting a suitable value we will perform **Transient** and **AC Analysis**
 
 ##### <ins>DC Operating Point</ins>
 For the DC Operating Point:
@@ -124,7 +125,7 @@ Now $R_D$ will definitely change the current, decreasing the resistance will inc
 ![Drain_Characteristics_25k](https://github.com/user-attachments/assets/8d0e9504-9377-438e-b35e-b99bac69f94a)
 
 * **I<sub>D</sub> vs V<sub>DS</sub> {for various R}**
-![Drain_Characterstics_R](https://github.com/user-attachments/assets/ecfa7fe8-6a0f-435a-a147-011f12221a35)
+![Drain_Characteristics_R](https://github.com/user-attachments/assets/ecfa7fe8-6a0f-435a-a147-011f12221a35)
 
 **The second graph is for various values of R the topmost curve has lowest R while bottom most have highest R**
 
@@ -132,7 +133,7 @@ Now $R_D$ will definitely change the current, decreasing the resistance will inc
 
 ![Experiment-1(Id_vs_VgsvaryR)](https://github.com/user-attachments/assets/5cef4f5d-7a0b-42e6-b502-776213ec9f05)
 
-This is transfer characteristics for various values of $R_D$ (Lowest R for highest curve, same as that in drain characterstics)
+This is transfer characteristics for various values of $R_D$ (Lowest R for highest curve, same as that in drain characteristics)
 
 * **I<sub>D</sub> vs V<sub>GS</sub> {For V<sub>DD</sub> = 1.8 V}**
 ![Experiment-1(Id_vs_Vgs)](https://github.com/user-attachments/assets/5a8b6ad5-ba45-40a7-9591-f318df57600c)
@@ -232,7 +233,7 @@ This graph can help us calculate bandwidth, according to the graph the max gain 
 3. **R<sub>D</sub> = 25 k $\ohm$**
 4. Gain = **-2.5**
 5. Bandwidth = Cannot be determined
-6. At L > 300nm the W/L = 0.97899 (approximately) 
+6. At L > **300nm** the **W/L (Aspect Ratio) = 0.97899 (approximately)** 
 
 #### <ins>Analysis of CS Amplifier with a Current Source Load</ins>
 
@@ -249,6 +250,92 @@ If you connect the gate and drain of PMOS together you will get a diode connecte
 
 ![Pmos](https://github.com/user-attachments/assets/74b627ef-7bd8-45e1-8fde-6e9787c5eb66)
 
-But we will keep our discussion till current source load, 
+But we will keep our discussion till current source load,
 
+##### <ins> DC Operating Point </ins>
 
+**<ins>Procedure</ins>**
+1. Setup the circuit as shown above
+2. Make sure to load the library file and add the spice directive to your workspace
+3. Add **PMOS4** and change it's name to **CMOSP**
+4. Get suitable value for W, L for PMOS by **hit and trial**
+5. Perform a DC Sweep and get a value for **V<sub>b</sub>**
+6. Repeat steps for DC operating point from previous condition
+
+**<ins>Observations</ins>**
+By hit and trial we get **L = 2 $\mu$ m and W = 0.2 $\mu$ m**
+For the value of V<sub>b</sub> we did a DC Sweep
+
+* **I<sub>D</sub> vs V<sub>b</sub>**
+![PMOS_Vb](https://github.com/user-attachments/assets/55ab139b-340b-48aa-91bc-1b19d93dd8c7)
+
+From the graph above it is apparent that we will get the current nearest to maximum permissible current somewhere near **V<sub>b</sub> = -5V**
+
+Now that the values has been set we perform the DC Operation Point Analysis
+
+* **DC Operation Point**
+
+![PMOS-OP](https://github.com/user-attachments/assets/7deeb8c3-b283-47bd-9d57-897ca808cdc3)
+
+Power Consumption = V * I = 1.11 V * 2.712E-05 A = **30.1 $\mu$ W** (Way under power budget) 
+
+**CIRCUIT**
+![PMOS_OPERATING](https://github.com/user-attachments/assets/6971440f-e83f-480d-af91-eff8834fc580)
+
+We now perfrom drain and transfer characteristics of the circuit
+
+* **Drain Characteristics**
+![Drain_Characterstics_PMOS](https://github.com/user-attachments/assets/5a6e0181-1b09-4e91-9d46-eb45fa893a73)
+
+Above is the drain characteristics, from the looks of it , it looks linear for some values that is due to current source
+
+* **Transfer Characteristics**
+![Transfer_Characterstics_PMOS](https://github.com/user-attachments/assets/f7f2e99f-6d08-4495-b66b-9e657421b6f8)
+
+Above is the transfer characteristics, it is similar to the drain characteristics of the condition with resistive load
+
+* **Voltage Transfer Characteristics**
+![VTC_PMOS](https://github.com/user-attachments/assets/9dc27a6b-ca2d-42c1-9dad-8c6990891ba4)
+
+##### <ins>Transient Analysis</ins>
+
+Follow the same steps as in previous case 
+
+**CIRCUITS**
+
+![PMOS_TRANSIENT](https://github.com/user-attachments/assets/8c447467-9d6f-4d1f-83df-00b3e3e929ab)
+
+**GRAPHS**
+
+![Transient](https://github.com/user-attachments/assets/fea3423d-0bab-44cb-b994-9f2499cda0c0)
+
+**Calculation**
+
+$\frac{V_O}{V_i}$ = - $\frac{1.23 - 1.11}{50m}$ = **-2.4**
+
+##### <ins> AC Analysis </ins>
+
+Follow the same steps as in previous case
+
+**CIRCUIT**
+
+![PMOS_FREQUENCY_RESPONSE](https://github.com/user-attachments/assets/44a3b698-9525-44e6-a15d-1e42201ad5e8)
+
+**GRAPH**
+
+![FrequencyResponse_PMOS](https://github.com/user-attachments/assets/b957b76f-4656-4d59-a67d-7ba3507986f7)
+
+-3dB Gain = **2.17 GHz**
+
+#### <ins>INFERENCE</ins>
+1. The term 180 nm technology specifies minimum length possible to be manufactured, we can easily manufacture transistors with higher value than these
+2. At low values of length (L) the relation between current (saturation) and width (W) is no longer linear it deviates from the current equation due to short channel length effect, channel length modulation and other parameters
+3. At high values the linear relation between W and current is maintained
+4. We should be very carefull while changing the value of drain resistance as that can easily tip off the MOSFET from the saturation region we can use degeneration and voltage divider bias to overcome this problem of senstivity and add a source filter to remove the effect of degeneration
+5. The lower cutoff of frequency response is not present in absence of filters in the circuit, higher cutoff is still there because it is caused by parasitic capacitance which is an intrinsic property of MOSFET
+6. Value of drain resistance in this case is directly tied to the gain so increasing it will increase the gain however increasing it after a certain value will take the MOSFET to edge or out of Saturation which are not ideal or usable conditions for CS Amplifier
+7. We may trade off some current for higher gain
+8. Resistors take a lot of space in a circuit so we generally replace it with a MOSFET in diode connected load configuration, in this configuration V<sub>GD</sub> = 0 i.e gate and drain terminals are shorted together and hence MOSFET stays is linear region and acts as a resistor
+9. One more exmaple that can increase gain with less or same power consumption is current source load configuration which we have done analysis for
+10. The drain characteristics of this configuration has a linear region due to addition of current source and the transfer characteristic looks similar to drain characteristics of resistive load configuration
+11. PMOS is in saturation region (from circuit diagram)
