@@ -77,12 +77,14 @@ For this analysis we will keep $R_D = 1k \ohm$, $V_{GS} = 0.9 V$ and perform a *
 
 Keep L = 180nm , then you will get a curve for <code>ID vs W</code> for L = 180 nm
 
+* **I<sub>D</sub> vs W {for L = 180nm}**
 ![Experiment-1(Id_vs_W)](https://github.com/user-attachments/assets/9ce97280-0051-4b10-8af6-1596d98758e9)
 
 As you can see, for our conditions at no value of W is the current near $27.77 \mu A$, it is always higher than that thus going over the power budget, also notice the spikes at the beginning of the curve and at particularly low values of 30nm - 40nm the current decreases but according to the current equation $I_D = \frac{1}{2} \mu_n C_{ox} \frac{W}{L} (V_{GS} - V_T)^2$, W is directly proportional to $I_D$ so if other parameters are constant then $I_D$ must increase linearly with respect to W but that is not the case here
 
 We further analyse this curve for various values of L using parameter sweeps at the same time
 
+* **I<sub>D</sub> vs W {for various W}**
 ![Experiment-1(Id_vs_L_varied)](https://github.com/user-attachments/assets/05108b77-821b-46e8-b296-04b132e4c845)
 
 **In the figure as we go down length increase**
@@ -95,13 +97,17 @@ So for this reason we will choose **L = 600nm**
 
 For this analysis we will keep $R_D = 1k \ohm$, $V_{GS} = 0.9 V$ and perform the parameter sweep again but this time for L,
 
+* **I<sub>D</sub> vs L {for various W}**
 ![Experiment-1(Id_vs_L_W)](https://github.com/user-attachments/assets/a5df5d1d-0ef2-47da-9103-1ab9cc461f38)
 
 This curve is quite normal in the sense it follows the MOSFET current equation becuase as $I_D$ increases L decreases and that is exactly what is happening here, however we cannot go lower than 180nm as it is a bound specified by the manufacturer in our case TSMC,
 
 So for our case for L = 600nm we take **W = 592nm** , you can also perform hit and trial for this to get the same result
 
+* **I<sub>D</sub> vs L** 
 ![Experiment-1(Id_vs_L)](https://github.com/user-attachments/assets/a01d9821-3514-43fe-a1c5-0d6a1e4f9ecc)
+
+* **DC Operating Point**
 ![DC_Operating_Point](https://github.com/user-attachments/assets/5920f3df-9976-4db1-ac01-83db3e22aa88)
 
 3. **Effect of R (Drain Resistance)**
@@ -116,6 +122,8 @@ Now $R_D$ will definitely change the current, decreasing the resistance will inc
 **<ins>Drain Characteristics</ins>**
 
 ![Drain_Characteristics_25k](https://github.com/user-attachments/assets/8d0e9504-9377-438e-b35e-b99bac69f94a)
+
+* **I<sub>D</sub> vs V<sub>DS</sub> {for various R}**
 ![Drain_Characterstics_R](https://github.com/user-attachments/assets/ecfa7fe8-6a0f-435a-a147-011f12221a35)
 
 **The second graph is for various values of R the topmost curve has lowest R while bottom most have highest R**
@@ -126,6 +134,7 @@ Now $R_D$ will definitely change the current, decreasing the resistance will inc
 
 This is transfer characteristics for various values of $R_D$ (Lowest R for highest curve, same as that in drain characterstics)
 
+* **I<sub>D</sub> vs V<sub>GS</sub> {For V<sub>DD</sub> = 1.8 V}**
 ![Experiment-1(Id_vs_Vgs)](https://github.com/user-attachments/assets/5a8b6ad5-ba45-40a7-9591-f318df57600c)
 
 The above graph shows that for $V_{DD} = 1.8 V$ we get maximum current at $V_{GS} = 0.9 V$ for $R_D = 1k \ohm$
@@ -134,6 +143,7 @@ These graphs are pretty standard for a MOSFET, we will continue our analysis,
 
 Now let us see how $I_D$ varies with $R_D$ 
 
+* **$I_D$ vs R {for various L}**
 ![Experiment-1(R1_vs_Id_varyL_1)](https://github.com/user-attachments/assets/707e6841-e5d0-4722-996b-3d41b1296cf1)
 
 From the graph we can observe for L = 180nm and W = 100nm we will get maximum current at resistance of $58 k \ohm$ (approx)
@@ -222,5 +232,23 @@ This graph can help us calculate bandwidth, according to the graph the max gain 
 3. **R<sub>D</sub> = 25 k $\ohm$**
 4. Gain = **-2.5**
 5. Bandwidth = Cannot be determined
+6. At L > 300nm the W/L = 0.97899 (approximately) 
 
 #### <ins>Analysis of CS Amplifier with a Current Source Load</ins>
+
+Now we replace the resistive load with PMOS the library you just attached has BSIM3 MOdel for PMOS as well
+The circuit is as follows:
+
+**CIRCUIT**
+
+![PMOS](https://github.com/user-attachments/assets/970cbbaf-8abe-4106-a3ca-efe6f9aa06dc)
+
+If you connect the gate and drain of PMOS together you will get a diode connected load and your PMOS will act as a resistor as shown below
+
+**DIODE CONNECTED LOAD**
+
+![Pmos](https://github.com/user-attachments/assets/74b627ef-7bd8-45e1-8fde-6e9787c5eb66)
+
+But we will keep our discussion till current source load, 
+
+
