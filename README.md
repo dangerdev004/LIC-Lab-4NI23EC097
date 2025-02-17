@@ -68,8 +68,8 @@ For the DC Operating Point:
 * Click on the **Play** button to turn on the simulation, this will generate a text file with all the voltages and currents for more info go to **View** -> **SPICE Output Log**
 
 ###### Observations
-Now the value of our $I_D$ will be different for different W, L ,R and $V_{GS}$ values, so we have 4 parameters to work around with, we will see what affect they have on current one by one
-1. **Affect of L (Channel length)**
+Now the value of our $I_D$ will be different for different W, L ,R and $V_{GS}$ values, so we have 4 parameters to work around with, we will see what Effect they have on current one by one
+1. **Effect of L (Channel length)**
 
 For this analysis we will keep $R_D = 1k \ohm$, $V_{GS} = 0.9 V$ and perform a **Linear parameter sweep** for W and **List paramter sweep** for L, with the help of the commands
 
@@ -91,7 +91,7 @@ As you can observe, at higher lengths with R and $V_{GS}$ constant we can see th
 
 So for this reason we will choose **L = 600nm**
 
-2. **Affect of W (Channel width)**
+2. **Effect of W (Channel width)**
 
 For this analysis we will keep $R_D = 1k \ohm$, $V_{GS} = 0.9 V$ and perform the parameter sweep again but this time for L,
 
@@ -104,9 +104,9 @@ So for our case for L = 600nm we take **W = 592nm** , you can also perform hit a
 ![Experiment-1(Id_vs_L)](https://github.com/user-attachments/assets/a01d9821-3514-43fe-a1c5-0d6a1e4f9ecc)
 ![DC_Operating_Point](https://github.com/user-attachments/assets/5920f3df-9976-4db1-ac01-83db3e22aa88)
 
-3. **Affect of R (Drain Resistance)**
+3. **Effect of R (Drain Resistance)**
 
-Now $R_D$ will definitely change the current, decreasing the resistance will increase the current, but it can overshoot our specified power budget and it lowers the amplifier gain, so for this reason we will increase $R_D$ this will for sure decrease the current from maximum permissible amount but we can get much higher gains (a reasonable trade off), however we should be careful as very high resistance can tip the MOSFET out of the saturation region which will be catastrophic for an amplifier therefore be very careful while varying the resistance, we will start with basic MOSFET characteristics first for a constant R and then we will see the affect of change of $R_D$
+Now $R_D$ will definitely change the current, decreasing the resistance will increase the current, but it can overshoot our specified power budget and it lowers the amplifier gain, so for this reason we will increase $R_D$ this will for sure decrease the current from maximum permissible amount but we can get much higher gains (a reasonable trade off), however we should be careful as very high resistance can tip the MOSFET out of the saturation region which will be catastrophic for an amplifier therefore be very careful while varying the resistance, we will start with basic MOSFET characteristics first for a constant R and then we will see the Effect of change of $R_D$
 
 **Voltage Transfer Characteristics**
 
@@ -142,5 +142,5 @@ So for lower values of L and W the drain resistance should be high to reach max 
 
 So now we have **L = 600nm W = 592nm R = 1 k $\ohm$**
 
-4. **Affect of $V_{GS}$**
+4. **Effect of $V_{GS}$**
 
