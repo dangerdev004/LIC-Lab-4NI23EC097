@@ -398,6 +398,7 @@ Follow the same steps as in previous case
 6. Value of drain resistance in this case is directly tied to the gain so increasing it will increase the gain however increasing it after a certain value will take the MOSFET to edge or out of Saturation which are not ideal or usable conditions for CS Amplifier
 7. We may trade off some current for higher gain
 8. Resistors take a lot of space in a circuit so we generally replace it with a MOSFET in diode connected load configuration, in this configuration V<sub>GD</sub> = 0 i.e gate and drain terminals are shorted together and hence MOSFET stays is linear region and acts as a resistor
-9. One more exmaple that can increase gain with less or same power consumption is current source load configuration which we have done analysis for
+9. One more configuration that can increase gain with less or same power consumption is current source load configuration which we have 
+done analysis for
 10. The drain characteristics of this configuration has a linear region due to addition of current source and the transfer characteristic looks similar to drain characteristics of resistive load configuration
 11. PMOS is in saturation region (from circuit diagram)
