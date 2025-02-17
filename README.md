@@ -4,7 +4,7 @@
 Perform DC, Transient and AC Analysis of the CS Amplifier with following specifications **Using LTSpice**
 * Technology: 180nm (TSMC)
 * VDD = 1.8 V
-* Power Budget = 50 uW
+* Power Budget = 50 $\mu$ W
 Also Extract the following Parameters
 * DC operating point
 * Gain
@@ -109,18 +109,18 @@ So for our case for L = 600nm we take **W = 592nm** , you can also perform hit a
 Now $R_D$ will definitely change the current, decreasing the resistance will increase the current, but it can overshoot our specified power budget and it lowers the amplifier gain, so for this reason we will increase $R_D$ this will for sure decrease the current from maximum permissible amount but we can get much higher gains (a reasonable trade off), however we should be careful as very high resistance can tip the MOSFET out of the saturation region which will be catastrophic for an amplifier therefore be very careful while varying the resistance, we will start with basic MOSFET characteristics first for a constant R and then we will see the Effect of change of $R_D$
 **Gain is directly dependent on drain resistance and hence we will need to increase $R_D$ for increased gain but be careful as it may tip off the saturation point**
 
-**Voltage Transfer Characteristics**
+**<ins>Voltage Transfer Characteristics</ins>**
 
 ![VTC](https://github.com/user-attachments/assets/2b571034-90a8-41de-b61b-7756211f7277)
 
-**Drain Characteristics**
+**<ins>Drain Characteristics</ins>**
 
 ![Drain_Characteristics_25k](https://github.com/user-attachments/assets/8d0e9504-9377-438e-b35e-b99bac69f94a)
 ![Drain_Characterstics_R](https://github.com/user-attachments/assets/ecfa7fe8-6a0f-435a-a147-011f12221a35)
 
 **The second graph is for various values of R the topmost curve has lowest R while bottom most have highest R**
 
-**Transfer Characteristics**
+**<ins>Transfer Characteristics</ins>**
 
 ![Experiment-1(Id_vs_VgsvaryR)](https://github.com/user-attachments/assets/5cef4f5d-7a0b-42e6-b502-776213ec9f05)
 
@@ -167,6 +167,10 @@ We will now add a time varying (sine) source to our input gate and observe the o
 
 ***Observations***
 
+**CIRCUIT**
+
+![Transient_ckt](https://github.com/user-attachments/assets/1990c466-8295-4c6e-9dee-512da7a2c6ad)
+
 **INPUT**
 
 ![Transient(Vin_inc)](https://github.com/user-attachments/assets/d9ce155f-6359-470c-8fe2-2c6cd57159d6)
@@ -180,8 +184,11 @@ We can calculate the gain from the $frac{Vo}{Vi}$ , which comes out to be $frac{
 We can also calculate gain from $A_v = -g_mR_{out}$
 $A_v = -(0.104m)(25k) = -2.6$ 
 This gain matches with the one calculated before, it is also important to note down the DC operating point here to verify that the MOSFET is in saturation
+We can also calculate power consumption using this data
 
 ![DC_Operating_Point_25k](https://github.com/user-attachments/assets/76cef1db-e467-4b1e-9577-b347a5485fbb)
+
+**Power Consumed** P = VI = 1.12169 * 27.132 $\mu$ A = 30.4 $\mu$ W (***Under specifier power budget***) 
 
 Now we can move to AC analysis but before that it will be easy for analysis to take lower drain resistance, hence we take $R_D = 15k \ohm$
 
@@ -190,4 +197,22 @@ Now we can move to AC analysis but before that it will be easy for analysis to t
 This is also known as frequency and phase response
 
 ***Procedure***
-![Uploading Frequency_Response_data.png…]()
+
+1. Change your source and simply Add **"1"** to **Small Signal AC Analysis**
+2. Go to **Configure Analysis -> AC Analysis -> Put "Decade" in "Type of Sweep" -> Put "20" in "Number of Points" -> Set "Start Frequency" as "0.1" and "Stop Frequency" as "1T" (terahertz)**
+3. Add the spice directive to your workspace
+4. Run the simulation
+5. Place the cursor near the drain and resistor until you see a red probe and then click
+6. You will get frequency and drain response
+
+**CIRCUIT**
+
+![Frequency Response](https://github.com/user-attachments/assets/27c36f07-399f-4c8f-bf75-f39902b34f3c)
+
+**GRAPH**
+
+![Frequency_Response_data](https://github.com/user-attachments/assets/8f76e5bf-11c4-4991-af14-384db7d0ef66)
+
+This graph can help us calculate bandwidth, according to the graph the max gain = 9.6 dB then the frequency for -3dB gain = 16.5GHz but we don't have the data for F<sub>L</sub> this checks out as our circuit has no capacitors or filters which are the reason for low gain at the beginning of the curve hence, bandwidth cannot be determined at this stage
+
+***SUMMARY***
