@@ -48,12 +48,12 @@ where Gm is the amplifier’s transconductance.
 Because of the trade-off between high gain and operating range, the resistor load isn’t necessarily the best choice for a CS amplifier. In addition, large resistors are needed for large gains, and these result in very large devices on-chip. The resistance value can also change up to 20% due to process variations. For all of these reasons, it’s worth looking at load options that don’t require passive devices.
 
 ##### Common-Source Amplifier With a Diode-Connected Load
-#### Analysis of CS Amplifier with a Resistor Load
+#### <ins>Analysis of CS Amplifier with a Resistor Load</ins>
 In this section we will analyse the CS Amplifier with a resistive load, for that we will go ahead and install a simulation software more specifically LTSpice and assemble a very basic CS Amplifier Circuit as shown below, choose **NMOS4**, it has 4 terminals namely **Gate (G)**, **Drain (D)**, **Source (S)** and **Body (B)** terminals. Connect the Body terminal to Source of the MOSFET. Also add voltage sources and resistance, add supply for 1.8 V and set gate voltage to be around 50% of the supply voltage i.e. 0.9 V 
 
 ![PIc1](https://github.com/user-attachments/assets/9dab765c-b49a-4309-9914-6ca94b02d4a8)
 
-##### Procedure
+##### <ins>Procedure</ins>
 1. Create a new Experiment Workspace
 2.  Enter a spice directive by clicking on **.t** option on the ribbon
 <code> .lib tsmc018.lib </code> This specifies the BSIM3 Model of the MOSFET, if you stored this file in some other location specify that in the command
@@ -61,13 +61,13 @@ In this section we will analyse the CS Amplifier with a resistive load, for that
 4. Now we can start finding appropriate **Aspect Ratio** for our MOSFET, we will take a range and combination of values for **W (width)** and **L (length)** of the MOSFET
 5. After getting a suitable value we will perform **Transient** and **AC Analysis**
 
-##### DC Operating Point
+##### <ins>DC Operating Point</ins>
 For the DC Operating Point:
 * Go to **Simuate** -> **Configure Analysis** -> **DC operating point**
 * Add the **.op** text on the experiment workspace
 * Click on the **Play** button to turn on the simulation, this will generate a text file with all the voltages and currents for more info go to **View** -> **SPICE Output Log**
 
-###### Observations
+###### <ins>Observations</ins>
 Now the value of our $I_D$ will be different for different W, L ,R and $V_{GS}$ values, so we have 4 parameters to work around with, we will see what Effect they have on current one by one
 1. **Effect of L (Channel length)**
 
@@ -107,6 +107,7 @@ So for our case for L = 600nm we take **W = 592nm** , you can also perform hit a
 3. **Effect of R (Drain Resistance)**
 
 Now $R_D$ will definitely change the current, decreasing the resistance will increase the current, but it can overshoot our specified power budget and it lowers the amplifier gain, so for this reason we will increase $R_D$ this will for sure decrease the current from maximum permissible amount but we can get much higher gains (a reasonable trade off), however we should be careful as very high resistance can tip the MOSFET out of the saturation region which will be catastrophic for an amplifier therefore be very careful while varying the resistance, we will start with basic MOSFET characteristics first for a constant R and then we will see the Effect of change of $R_D$
+**Gain is directly dependent on drain resistance and hence we will need to increase $R_D$ for increased gain but be careful as it may tip off the saturation point**
 
 **Voltage Transfer Characteristics**
 
@@ -144,3 +145,49 @@ So now we have **L = 600nm W = 592nm R = 1 k $\ohm$**
 
 4. **Effect of $V_{GS}$**
 
+This is the main parameter for turning on the MOSFET and hence it is very important, we have actually seen it's effects in the section of Effect of drain resistance.
+
+For increased gain we can change our $R_D = 25k \ohm$
+
+Our final values **L = 600 nm  W = 592 nm  $R_D = 25k \ohm$  $V_{GS}$ = 0.9 V**
+
+##### <ins>Transient Analysis<\ins>
+
+We will now add a time varying (sine) source to our input gate and observe the output from drain terminal, we are not using any filters so be careful of the offset
+
+***Procedure***
+
+1. Edit your source with DC offset - 0.9V, Amplitude = 50mV, Frequency = 1kHz
+2. Go to **Configure Analysis -> Transisent**
+3. Add **Stop time = x ms** (replace x with your desired value)
+4. Add spie directive to your workspace and then run the simulation
+5. Place the probe near the resistance (**A red probe will appear**)
+6. Observe the grpahs
+7. Also plot a curve for input
+
+***Observations***
+
+**INPUT**
+
+![Transient(Vin_inc)](https://github.com/user-attachments/assets/d9ce155f-6359-470c-8fe2-2c6cd57159d6)
+
+**OUTPUT**
+
+![Transient(Vout_inc)](https://github.com/user-attachments/assets/99c4120a-35e1-4278-8650-91f10e6001d2)
+
+We can calculate the gain from the $frac{Vo}{Vi}$ , which comes out to be $frac{1.24-1.12}{50m}$ = -2.4 (due to 180 phase shift)
+
+We can also calculate gain from $A_v = -g_mR_{out}$
+$A_v = -(0.104m)(25k) = -2.6$ 
+This gain matches with the one calculated before, it is also important to note down the DC operating point here to verify that the MOSFET is in saturation
+
+![DC_Operating_Point_25k](https://github.com/user-attachments/assets/76cef1db-e467-4b1e-9577-b347a5485fbb)
+
+Now we can move to AC analysis but before that it will be easy for analysis to take lower drain resistance, hence we take $R_D = 15k \ohm$
+
+##### <ins>AC Analysis</ins>
+
+This is also known as frequency and phase response
+
+***Procedure***
+![Uploading Frequency_Response_data.png…]()
