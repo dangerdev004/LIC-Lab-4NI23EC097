@@ -216,3 +216,11 @@ This is also known as frequency and phase response
 This graph can help us calculate bandwidth, according to the graph the max gain = 9.6 dB then the frequency for -3dB gain = 16.5GHz but we don't have the data for F<sub>L</sub> this checks out as our circuit has no capacitors or filters which are the reason for low gain at the beginning of the curve hence, bandwidth cannot be determined at this stage
 
 ***SUMMARY***
+
+1. Length (**L** = **600nm**)
+2. Width (**W** = **592nm**)
+3. **R<sub>D</sub> = 25 k $\ohm$**
+4. Gain = **-2.5**
+5. Bandwidth = Cannot be determined
+
+#### <ins>Analysis of CS Amplifier with a Current Source Load</ins>
