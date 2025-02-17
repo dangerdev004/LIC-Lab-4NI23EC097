@@ -106,12 +106,41 @@ So for our case for L = 600nm we take **W = 592nm** , you can also perform hit a
 
 3. **Affect of R (Drain Resistance)**
 
-Now $R_D$ will definitely change the current, decreasing the resistance will increase the current, but it can overshoot our specified power budget and it lowers the amplifier gain, so for this reason we will increase $R_D$ this will for sure decrease the current from maximum permissible amount but we can get much higher gains (a reasonable trade off), however we should be careful as very high resistance can tip the MOSFET out of the saturation region which will be catastrophic for an amplifier therefore be very careful while varying the resistance, we will start with basic MOSFET characterstics first for a constant R and then we will see the affect of change of $R_D$
+Now $R_D$ will definitely change the current, decreasing the resistance will increase the current, but it can overshoot our specified power budget and it lowers the amplifier gain, so for this reason we will increase $R_D$ this will for sure decrease the current from maximum permissible amount but we can get much higher gains (a reasonable trade off), however we should be careful as very high resistance can tip the MOSFET out of the saturation region which will be catastrophic for an amplifier therefore be very careful while varying the resistance, we will start with basic MOSFET characteristics first for a constant R and then we will see the affect of change of $R_D$
 
-**Voltage Transfer Characterstics**
+**Voltage Transfer Characteristics**
 
 ![VTC](https://github.com/user-attachments/assets/2b571034-90a8-41de-b61b-7756211f7277)
 
-**Drain Characterstics**
+**Drain Characteristics**
 
-![Drain_Characterstics_25k](https://github.com/user-attachments/assets/8d0e9504-9377-438e-b35e-b99bac69f94a)
+![Drain_Characteristics_25k](https://github.com/user-attachments/assets/8d0e9504-9377-438e-b35e-b99bac69f94a)
+![Drain_Characterstics_R](https://github.com/user-attachments/assets/ecfa7fe8-6a0f-435a-a147-011f12221a35)
+
+**The second graph is for various values of R the topmost curve has lowest R while bottom most have highest R**
+
+**Transfer Characteristics**
+
+![Experiment-1(Id_vs_VgsvaryR)](https://github.com/user-attachments/assets/5cef4f5d-7a0b-42e6-b502-776213ec9f05)
+
+This is transfer characteristics for various values of $R_D$ (Lowest R for highest curve, same as that in drain characterstics)
+
+![Experiment-1(Id_vs_Vgs)](https://github.com/user-attachments/assets/5a8b6ad5-ba45-40a7-9591-f318df57600c)
+
+The above graph shows that for $V_{DD} = 1.8 V$ we get maximum current at $V_{GS} = 0.9 V$ for $R_D = 1k \ohm$
+
+These graphs are pretty standard for a MOSFET, we will continue our analysis,
+
+Now let us see how $I_D$ varies with $R_D$ 
+
+![Experiment-1(R1_vs_Id_varyL_1)](https://github.com/user-attachments/assets/707e6841-e5d0-4722-996b-3d41b1296cf1)
+
+From the graph we can observe for L = 180nm and W = 100nm we will get maximum current at resistance of $58 k \ohm$ (approx)
+We can also see that for higher L the current will never reach the maximum value for any value of R.
+
+So for lower values of L and W the drain resistance should be high to reach max current, so if we keep our L and W high we can use lower values of R
+
+So now we have **L = 600nm W = 592nm R = 1 k $\ohm$**
+
+4. **Affect of $V_{GS}$**
+
