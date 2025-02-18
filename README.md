@@ -402,3 +402,4 @@ Follow the same steps as in previous case
 done analysis for
 10. The drain characteristics of this configuration has a linear region due to addition of current source and the transfer characteristic looks similar to drain characteristics of resistive load configuration
 11. PMOS is in saturation region (from circuit diagram)
+12. It is possible to get a width at 180 nm for the given conditions but we will need to change the V<sub>GS</sub> to 0.6 V and the required width from trial and error will be 1.12 $\mu$ m at R = 1 k $\ohm$
