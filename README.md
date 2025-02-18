@@ -17,7 +17,7 @@ Also Extract the following Parameters
 
 ## Introduction
 
-Amplifiers are a fundamental part of analog circuit design, and MOSFETs serve as excellent amplification devices. Among the various single-stage amplifier topologies, the **common-source (CS) amplifier** is widely used. It is characterized by having the **gate as the input, the drain as the output, and the source as the common terminal** for AC signals.
+Amplifiers are a basic part of analog circuit design, and MOSFETs serve as excellent amplification devices. Among the various amplifier configurations, the **common-source (CS) amplifier** is widely used. It is characterized by having the **gate as the input, the drain as the output, and the source as the common terminal** for AC signals.
 
 This document covers two common implementations of the CS amplifier:  
 - **CS Amplifier with a Resistor Load**
@@ -261,7 +261,7 @@ We can also calculate power consumption using this data
 
 ![DC_Operating_Point_25k](https://github.com/user-attachments/assets/76cef1db-e467-4b1e-9577-b347a5485fbb)
 
-**Power Consumed** P = VI = 1.12169 * 27.132 $\mu$ A = 30.4 $\mu$ W (***Under specifier power budget***) 
+**Power Consumed** P = VI = 1.8 * 27.132 $\mu$ A = 48.8376 $\mu$ W (***Under specifier power budget***) 
 
 Now we can move to AC analysis but before that it will be easy for analysis to take lower drain resistance, hence we take $R_D = 15k \ohm$
 
@@ -339,7 +339,7 @@ Now that the values has been set we perform the DC Operation Point Analysis
 
 ![PMOS-OP](https://github.com/user-attachments/assets/7deeb8c3-b283-47bd-9d57-897ca808cdc3)
 
-Power Consumption = V * I = 1.11 V * 2.712E-05 A = **30.1 $\mu$ W** (Way under power budget) 
+Power Consumption = V * I = 1.8 V * 2.712E-05 A = **48.825 $\mu$ W** (Way under power budget) 
 
 **CIRCUIT**
 ![PMOS_OPERATING](https://github.com/user-attachments/assets/6971440f-e83f-480d-af91-eff8834fc580)
