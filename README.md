@@ -173,6 +173,8 @@ So for our case for L = 600nm we take **W = 592nm** , you can also perform hit a
 * **DC Operating Point**
 ![DC_Operating_Point](https://github.com/user-attachments/assets/5920f3df-9976-4db1-ac01-83db3e22aa88)
 
+**NOTE: As we can see here the operating point is at cutoff and hence our amplifier will not work now to make it work it as an amplifier and get a decent gain we need to change our R<sub>D</sub> and that's what we will do in the next section**
+
 3. **Effect of R (Drain Resistance)**
 
 Now $R_D$ will definitely change the current, decreasing the resistance will increase the current, but it can overshoot our specified power budget and it lowers the amplifier gain, so for this reason we will increase $R_D$ this will for sure decrease the current from maximum permissible amount but we can get much higher gains (a reasonable trade off), however we should be careful as very high resistance can tip the MOSFET out of the saturation region which will be catastrophic for an amplifier therefore be very careful while varying the resistance, we will start with basic MOSFET characteristics first for a constant R and then we will see the Effect of change of $R_D$
