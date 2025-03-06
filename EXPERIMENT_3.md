@@ -9,6 +9,8 @@ Design a differential amplifier for the following specifications **Using LTSpice
 
 Perform **DC Analysis**, **Transient Analysis**, **Frequency Response** and find out required parameters
 
+**Please refer to previous experiment if you don't know the steps to carry out analysis in LTSpice**
+
 **NOTE: Theory portion is taken from Sedra Smith Book Chapter 9 (Page no. 594)**
 ### Theory (From Sedra - Smith)
 Figure below shows the basic MOS differential-pair configuration. It consists of two matched transistors, Q<sub>1</sub> and Q<sub>2</sub> , whose sources are joined together and biased by a constant-current source I. The latter is usually implemented by a MOSFET circuit of the type studied earlier. For the time being, **we assume that the current source is ideal and that it has infinite output resistance**. Although each drain is shown connected to the positive supply through a resistance R<sub>D</sub> , in most cases active (current-source) loads are employed, as will be seen shortly. For the time being, however, we will explain the essence of the differential-pair operation utilizing simple resistive loads. Whatever type of load is used, **it is essential that the MOSFETs not enter the triode region of operation.**
@@ -43,3 +45,37 @@ Before we start with finding DC Operating point it is important we setup L and W
 
 Now with that settled we can move forward with DC Analysis
 ##### DC Analysis
+We now find the DC Operating Point of the circuit 
+
+![RSS_OP_POINT](https://github.com/user-attachments/assets/34f9a3d7-e392-4064-8867-37fee6bae68a)
+
+**Output Log**
+
+![RSS_OP_POINT_OP_LOG](https://github.com/user-attachments/assets/b610616c-87ba-4627-a47e-826d323b8a10)
+
+This data is according to our design specifications. 
+
+**However pay attention to the threshold voltage we know that in the SPICE Netlist the threshold voltage is mentioned as 0.366 V but while doing DC Analysis the threshold voltage is now 0.497 V, this is due to body effect.**
+
+Now we increase V<sub>ICM</sub> to 1.1 V  
+
+![Vin_increase](https://github.com/user-attachments/assets/22e85561-6b7f-4a28-aed4-26c04412caa2)
+
+**As we can see the total current is greater than 0.5 mA which is outside our power budget and thus makes it impractical for our use case, but the MOSFETs are still in saturation, the threshold voltage further increases as seen below**
+
+![Vin_increase_op_log](https://github.com/user-attachments/assets/99a65c31-358f-418b-8570-3ed8a9fde512)
+
+**Calculate maximum input swing and output swing**
+
+
+
+**Gain equation using small signal model**
+
+##### Transient Analysis
+
+Now we are ready for transient analysis, we take an input of 50mV (Amplitude)
+
+![RSS_transient](https://github.com/user-attachments/assets/712d86a1-4440-406f-ac63-481e54216f79)
+
+We can now calculate gain **A<sub>V</sub> = $\frac{1.3721712 V - 1.0994212 V}{950.22157 mV - 1.0001041}$ = -5.46 V/V**
+
