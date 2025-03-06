@@ -92,6 +92,14 @@ At maximum V<sub>OCM</sub> gate voltage will be zero according to voltage transf
 
 **Maximum Output Swing = 1.4515 V** (This is also a theoretical value even in simulations it will be very different)
 
+![300mV](https://github.com/user-attachments/assets/da46d1b5-e64a-4213-aaeb-046e89c39d4c)
+
+**300 mV - Amplitude**
+
+![500mV](https://github.com/user-attachments/assets/b31d2d59-32d7-49bb-9515-28d5ddab246d)
+
+**500 mV - Amplitude, DC offset - 1.4 V**
+
 **Gain equation using small signal model**
 
 * G<sub>m</sub> (from DC Analysis) = 3.57 mA/V
