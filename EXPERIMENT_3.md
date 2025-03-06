@@ -32,3 +32,14 @@ We have performed some basic calculations based on our specification and the **r
 
 ### ANALYSIS
 #### CASE 1 : With R<sub>SS</sub>
+##### Circuit Setup
+
+![RSS_Circuit_Setup](https://github.com/user-attachments/assets/a1d346b9-a9c4-4659-97e8-2dfe3beeff9c)
+
+##### Prerequisites
+Before we start with finding DC Operating point it is important we setup L and W **(Aspect Ratio)** of our MOSFETs, we set our L (Channel length) = 180 nm and then perform a parameter sweep for W(Width) we can then use this to get the exact branch current from our design from our graph we got **W = 19.35 $\mu$ m** (approximately) 
+
+![IDvsW](https://github.com/user-attachments/assets/59e3e6e5-0701-4949-970e-aa75e9269c8f)
+
+Now with that settled we can move forward with DC Analysis
+##### DC Analysis
