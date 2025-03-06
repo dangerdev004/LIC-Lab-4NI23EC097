@@ -69,6 +69,7 @@ Now we increase V<sub>ICM</sub> to 1.1 V
 
 V<sub>ICM<sub>min</sub></sub> = V<sub>T</sub> + V<sub>P</sub> (We are observing the condition of **cut-off**)
 * V<sub>T</sub> = 0.497 V , V<sub>P</sub> = 0.4 V
+
 **V<sub>ICM<sub>min</sub></sub> = 0.897 V**
 
 Any signal that makes the gate voltage less than this value will give clipped output
@@ -76,7 +77,7 @@ Any signal that makes the gate voltage less than this value will give clipped ou
 V<sub>ICM<sub>max</sub></sub> = V<sub>OCM</sub> + V<sub>T</sub> (We are observing the condition of **MOSFET getting out of saturation region**)
 * V<sub>T</sub> = 0.497 V , V<sub>OCM</sub> = 1.1 V
 
-**V<sub>ICM<sub>max</sub></sub> = 1.59V V**
+**V<sub>ICM<sub>max</sub></sub> = 1.597 V**
 
 **Maximum Input Swing = 0.7 V** (This is the maximum value which our amplifier can provide input to without clipping, **however bear in mind this is a theoretical value there are many parameters we have not taken into considerations the symmetry of the sine output wave gets affected as early as 102 mV and so this value is for a perfect clipping anything beyond this The output will hit the supply rail or ground rail or both**)
 
@@ -91,8 +92,13 @@ At maximum V<sub>OCM</sub> gate voltage will be zero according to voltage transf
 
 **Maximum Output Swing = 1.097 V** (This is also a theoretical value even in simulations it will be very different)
 
-
 **Gain equation using small signal model**
+
+* G<sub>m</sub> (from DC Analysis) = 3.57 mA/V
+* R<sub>D</sub> = 3.6 k $\ohm$, R<sub>SS</sub> = 800 $\ohm$
+* A<sub>v</sub> = $\frac{-g_mR_D}{1 + g_mR_{SS}}$ = -3.332
+
+The calculated gain and the gain obtained from the transient analysis are not the same, **there can be missing parameters that we migh have overlooked**
 
 ##### Transient Analysis
 
@@ -111,4 +117,7 @@ Now we can calculate dB gain using transient analysis
 
 * **dB gain (Theoretical) = 20 log(A<sub>V</sub>) = 14.74 dB**
 * **dB gain (From graph) = 15.038 dB** (close to theoretical value)
-* **-3dB gain = 3.663 GHz** 
+* **-3dB gain = 3.663 GHz**
+
+#### CASE 2 : With Current Source
+##### Circuit Setup
