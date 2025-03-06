@@ -61,7 +61,7 @@ Now we increase V<sub>ICM</sub> to 1.1 V
 
 ![Vin_increase](https://github.com/user-attachments/assets/22e85561-6b7f-4a28-aed4-26c04412caa2)
 
-**As we can see the total current is greater than 0.5 mA which is outside our power budget and thus makes it impractical for our use case, but the MOSFETs are still in saturation, the threshold voltage further increases as seen below**
+**As we can see the total current is greater than 0.5 mA which is outside our power budget and thus makes it impractical for our use case, but the MOSFETs are still in saturation, the threshold voltage further increases as seen below also the tail node voltage is also changed**
 
 ![Vin_increase_op_log](https://github.com/user-attachments/assets/99a65c31-358f-418b-8570-3ed8a9fde512)
 
@@ -79,7 +79,7 @@ V<sub>ICM<sub>max</sub></sub> = V<sub>OCM</sub> + V<sub>T</sub> (We are observin
 
 **V<sub>ICM<sub>max</sub></sub> = 1.597 V**
 
-**Maximum Input Swing = 0.7 V** (This is the maximum value which our amplifier can provide input to without clipping, **however bear in mind this is a theoretical value there are many parameters we have not taken into considerations the symmetry of the sine output wave gets affected as early as 102 mV and so this value is for a perfect clipping anything beyond this The output will hit the supply rail or ground rail or both**)
+**Maximum Input Swing =  1.247 V** (This is the maximum value which our amplifier can provide input to without clipping, **however bear in mind this is a theoretical value there are many parameters we have not taken into considerations the symmetry of the sine output wave gets affected as early as 102 mV and so this value is for a perfect clipping anything beyond this The output will hit the supply rail or ground rail or both**)
 
 * V<sub>OCM<sub>min</sub></sub> = V<sub>OV</sub> + V<sub>P</sub> (We are observing the **edge of saturation**)
 
@@ -90,7 +90,7 @@ At maximum V<sub>OCM</sub> gate voltage will be zero according to voltage transf
 
 **V<sub>OCM<sub>max</sub></sub> = 2 V**
 
-**Maximum Output Swing = 1.097 V** (This is also a theoretical value even in simulations it will be very different)
+**Maximum Output Swing = 1.4515 V** (This is also a theoretical value even in simulations it will be very different)
 
 **Gain equation using small signal model**
 
@@ -118,6 +118,7 @@ Now we can calculate dB gain using transient analysis
 * **dB gain (Theoretical) = 20 log(A<sub>V</sub>) = 14.74 dB**
 * **dB gain (From graph) = 15.038 dB** (close to theoretical value)
 * **-3dB gain = 3.663 GHz**
+* **Bandwidth = 3.663 GHz**
 
 #### CASE 2 : With Current Source
 ##### Circuit Setup
@@ -154,4 +155,49 @@ With this analysis we can now move on to AC Analysis
 
 ##### AC Analysis
 
+![ISS_AC_ANALYSIS](https://github.com/user-attachments/assets/fc5b50f7-6809-450f-bf53-ed51cdb66e8d)
 
+* **dB gain (Theoretical) = 20 log(A<sub>V</sub>) = 13.44 dB**
+* **dB gain (From graph) = 13.54 dB** (close to theoretical value)
+* **-3dB gain = 3.85 GHz**
+* **Bandwidth = 3.85 GHz**
+
+Now we can move to our final case 
+
+#### CASE 3 : With NMOS
+##### Circuit Setup
+
+![NMOS-3-ckt-setup](https://github.com/user-attachments/assets/cd4a232a-3174-423a-bfb9-c973a965e3a9)
+
+##### DC Analysis
+
+Before moving forward we have to set gate voltage and aspect ratio so we assume L = 180nm, we perform two parameter sweeps separately for W and V and we get following information
+
+![MOS_Sweeps](https://github.com/user-attachments/assets/4b51ee16-abda-4118-8f58-5c00ca6d92a7)
+
+Here we choose 700 mV as our gate voltage and then perform a parameter sweep again and find particular value of W
+
+![IDvs_W_MOSFET](https://github.com/user-attachments/assets/65f3be39-b5d7-4118-80ee-b239511f68f6)
+
+From the curve we get **W = 14.156872 $\mu$ m** and then we can proceed with operating point calculations
+
+![M3_Data](https://github.com/user-attachments/assets/edd6e062-5d4c-481e-bf44-4921dc2ee31c)
+
+The other parameters are still same with this we can move on to transient analysis
+
+##### Transient Analysis
+
+![transient_nmos](https://github.com/user-attachments/assets/7f23c1ba-2452-43b7-b143-ca95994e6068)
+
+Gain = **A<sub>v</sub> = $\frac{1.3415149 V - 1.0997433 V}{950.33984 mV - 1.0000624 V}$ = -4.862 V/V** 
+
+We can now move to AC Analysis
+
+##### AC Analysis
+
+![NMOS_frequency_response](https://github.com/user-attachments/assets/83de25b1-ea75-40a5-97ea-2644e253a219)
+
+* **dB gain (Theoretical) = 20 log(A<sub>V</sub>) = 13.74 dB**
+* **dB gain (From graph) = 13.87 dB** (close to theoretical value)
+* **-3dB gain = 3.85 GHz**
+* **Bandwidth = 3.85 GHz**
