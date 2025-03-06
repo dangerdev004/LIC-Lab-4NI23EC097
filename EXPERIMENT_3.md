@@ -107,6 +107,7 @@ Now we are ready for transient analysis, we take an input of 50mV (Amplitude)
 ![RSS_transient](https://github.com/user-attachments/assets/712d86a1-4440-406f-ac63-481e54216f79)
 
 We can now calculate gain **A<sub>V</sub> = $\frac{1.3721712 V - 1.0994212 V}{950.22157 mV - 1.0001041}$ = -5.46 V/V**
+There is **180 degree phase shift** 
 
 ##### AC Analysis
 We have to perform the frequency response as we did in previous experiment, the results are below
@@ -145,6 +146,7 @@ Coming to gain the gain should increase as now thw gain is **A<sub>v</sub> = -g<
 ![ISS_Transient](https://github.com/user-attachments/assets/27ee21a0-08d4-4893-ab4b-d20db219c443)
 
 Using this we can now calculate the gain using **A<sub>v</sub> = $\frac{1.3334705 V - 1.0997587 V}{950.35135 mV - 1.0000624 V}$ = -4.701 V/V**
+There is a **180 degree phase shift**
 
 This gain is much lower then the one we calculated and there are some good reasons for that
 * Even though the gain should increase as an ideal current source has infinite output impedance in practicality less so, and thus due to this reason the gain is lower
@@ -190,6 +192,7 @@ The other parameters are still same with this we can move on to transient analys
 ![transient_nmos](https://github.com/user-attachments/assets/7f23c1ba-2452-43b7-b143-ca95994e6068)
 
 Gain = **A<sub>v</sub> = $\frac{1.3415149 V - 1.0997433 V}{950.33984 mV - 1.0000624 V}$ = -4.862 V/V** 
+There is a **180 degree phase shift**
 
 We can now move to AC Analysis
 
@@ -201,3 +204,20 @@ We can now move to AC Analysis
 * **dB gain (From graph) = 13.87 dB** (close to theoretical value)
 * **-3dB gain = 3.85 GHz**
 * **Bandwidth = 3.85 GHz**
+
+### Inferences
+After all that back and forth what do we learn from all that analysis
+
+1. Be sure you know all the parameters we have missed some parameters and their effect that's why our theoretical and practical gain is not matching
+2. We calculate some value for input and output swing but distortions and clipping starts with much smaller signals this can be attributed to various factors including channel width modulation and other factors
+3. Even though the gain should increase as an ideal current source has infinite output impedance in practicality less so, and thus due to this reason the gain is lower. If we notice this gain is lower than R<sub>SS</sub> case as well, this may have happened due to decrease in **Common Mode Rejection Ratio** which directly affects differential gain. We have not yet accounted for the channel length modulation which can actually substantially decrease the gain
+4. Note that the AC / Transient Analysis we have applied an input AC Voltage is given at only one end.This helps to better analyse the analysis part. However adding the 180 deg phase shift signal to other end increases the gain as the difference of these 2 signals increases.
+5. **Common-Mode Input and Output Range:** The **common-mode input voltage** range was found to be **0.897 V to 1.597 V**, while the **common-mode output voltage** range was **0.903 V to 2 V**, defining the operational limits.
+6. The threshold voltage changes for each MOSFET due to body effect
+7. All the configurations have a 180 degree phase shift
+
+![summary](https://github.com/user-attachments/assets/7f165db9-8323-495c-b1a1-e2123b272697)
+
+8. A lot of parameters of current source and MOSFET are common this is due to the reason in real world application we use FETs as constant current source
+9. For any differential amplifier the best amplification and the most stable operating point if with an ideal current source
+10. The gain of current source should be higher but it is less due to reasons mentioned in above points
