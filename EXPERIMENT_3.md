@@ -98,7 +98,7 @@ At maximum V<sub>OCM</sub> gate voltage will be zero according to voltage transf
 * R<sub>D</sub> = 3.6 k $\ohm$, R<sub>SS</sub> = 800 $\ohm$
 * A<sub>v</sub> = $\frac{-g_mR_D}{1 + g_mR_{SS}}$ = -3.332
 
-The calculated gain and the gain obtained from the transient analysis are not the same, **there can be missing parameters that we migh have overlooked**
+The calculated gain and the gain obtained from the transient analysis are not the same, **there can be missing parameters that we might have overlooked**
 
 ##### Transient Analysis
 
@@ -121,3 +121,37 @@ Now we can calculate dB gain using transient analysis
 
 #### CASE 2 : With Current Source
 ##### Circuit Setup
+
+![ISS_ckt](https://github.com/user-attachments/assets/f396347d-1fa9-4979-889a-37edcfb138d4)
+
+##### DC Analysis
+We have to give the current source the value of total current else it will violate the kirchoff's current law and will change the biasing of MOSFETs
+
+![ISS_1 1_DC](https://github.com/user-attachments/assets/1b47b282-666d-47f4-b90e-4ba6c6e795f6)
+
+The DC Operating Point and other DC Parameters is exactly the same as in previous case however something very interesting happens when we increase the V<sub>ICM</sub> to 1.1 V the operating point is still similar, MOSFETs are still in saturation region and we are still under our prescribed power budget thus this configuration **increases operation stability**
+
+![ISS_1 1V](https://github.com/user-attachments/assets/183fb043-c1aa-403e-8d58-6d248c2e4efe)
+
+**However there is change in output voltage**
+
+This configuration will keep the swing same as before as R<sub>SS</sub> had no effect on input and output swing
+
+Coming to gain the gain should increase as now thw gain is **A<sub>v</sub> = -g<sub>m</sub>R<sub>D</sub> = -12.852** (theoretical). However this gain is very different from the gain we are going to observe in the transient analysis
+
+##### Transient Analysis
+
+![ISS_Transient](https://github.com/user-attachments/assets/27ee21a0-08d4-4893-ab4b-d20db219c443)
+
+Using this we can now calculate the gain using **A<sub>v</sub> = $\frac{1.3334705 V - 1.0997587 V}{950.35135 mV - 1.0000624 V}$ = -4.701 V/V**
+
+This gain is much lower then the one we calculated and there are some good reasons for that
+* Even though the gain should increase as an ideal current source has infinite output impedance in practicality less so, and thus due to this reason the gain is lower
+* If we notice this gain is lower than R<sub>SS</sub> case as well, this may have happened due to decrease in **Common Mode Rejection Ratio** which directly affects differential gain.
+* We have not yet accounted for the channel length modulation which can actually substantially decrease the gain
+
+With this analysis we can now move on to AC Analysis
+
+##### AC Analysis
+
+
