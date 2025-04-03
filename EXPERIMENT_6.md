@@ -236,4 +236,50 @@ Total Current = I = 10<sup>-3</sup>/1.8 A = 0.555 mA
 
 
 ## Inferences
+#### **1. Current Mirror Design & Deviations from Ideal Ratios**
+- Practical **W/L ratios** deviate from theoretical values (e.g., 10µm/22.345µm instead of 10µm/20µm for 1:2 ratio).
+- **Reasons for deviation:**
+  - **Channel length modulation** (λ effect) alters drain current.
+  - **Threshold voltage mismatches** due to process variations.
+  - **Body effect** shifts threshold voltage (V<sub>TH</sub>).
+  - **Finite output resistance** affects current accuracy.
+- **Fix:** Adjust transistor width (W) to compensate for non-idealities.
+
+
+
+#### **2. Trade-offs Between Current, Gain & Bandwidth**
+- **Higher current → Higher gain**, but increases **power dissipation & noise**.
+- **Gain vs. Bandwidth trade-off:**
+  - Higher gain → Increased **Miller capacitance** → Lower bandwidth.
+  - Lower gain → Higher bandwidth.
+- **We may need to decrease current in a branch to make sure the device is in saturation region for proper amplification**
+- **Empirical Data:**
+
+  | **W/L (μm/μm)** | **Current Ratio** | **Gain (V/V)** | **Bandwidth (MHz)** |
+  |-----------------|------------------|---------------|----------------|
+  | 10/10 (1:1) | 1:1 | 9.67 | 886.2 |
+  | 3.24/3.24 (1:1) | 1:1 | 11.95 | 1699 |
+  | 10/20 (1:2) | 1:2 | 11.7 | 398.8 |
+  | 3.24/6.49 (1:2) | 1:2 | 9.95 | 1027 |
+  
+
+#### **3. Why & When to Use Cascoded Current Mirrors?**
+- **Issues with simple current mirrors:**
+  - Low **output resistance** limits gain.
+  - **Channel length modulation** reduces accuracy.
+- **Cascoding Benefits:**
+  - **Higher output resistance** → Improved gain stability.
+  - **Reduced λ effect** → More precise current mirroring.
+  - **Better linearity & matching**.
+  - **Improved Common-Mode Rejection Ratio (CMRR)**.
+- **When to use cascoding?**
+  - **Higher gain requirements** without excessive bandwidth loss.
+  - **High-frequency applications**
+  - **Precision analog circuits**
+
+
+#### **Final Conclusion**
+- **Current mirror as active load boosts gain & stability**, but real-world effects require **fine-tuning of W/L ratios**.
+- **Balance between gain, bandwidth, and power** depends on application.
+- **Cascoding improves performance but adds complexity**—use when necessary for high-precision designs.
 
