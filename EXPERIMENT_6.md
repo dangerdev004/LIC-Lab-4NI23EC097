@@ -220,11 +220,20 @@ Total Current = I = 10<sup>-3</sup>/1.8 A = 0.555 mA
 
 ![Transient](https://github.com/user-attachments/assets/783b27cb-5401-444f-bf37-93b01d38b892)
 
+**Gain = -25.56 V/V**
 
 #### AC Analysis
 
 ![AC](https://github.com/user-attachments/assets/e9129446-1e30-44cc-8ea9-821bf27e6ca9)
 
+**Bandwidth = 745.42 MHz** 
+
+#### Table of results 
+
+| NMOS 1        | NMOS 2        | PMOS 3       | PMOS 4       | NMOS 5        | NMOS 6        | Gain  |
+|--------------|--------------|--------------|--------------|--------------|--------------|-------|
+| 180n / 10u  | 180n / 22.3446u | 180n / 10u  | 180n / 10u  | 180n / 19.379518u | 180n / 19.379518u | 25.56|
+
 
 ## Inferences
-[List key observations and conclusions]
+
