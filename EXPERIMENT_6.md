@@ -1,4 +1,4 @@
-![AC](https://github.com/user-attachments/assets/41bf114d-359f-48f3-ae0a-b8a69c82a7dc)# Experiment - Analysis of Current Mirror
+# Experiment - Analysis of Current Mirror
 
 ## Question
 Design and analyze current mirror circuit as active load in amplifier circuit
