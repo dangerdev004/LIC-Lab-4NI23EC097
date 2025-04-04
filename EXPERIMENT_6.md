@@ -84,6 +84,8 @@ Total Current = I = 10<sup>-3</sup>/1.8 A = 0.555 mA
 
 #### Transient Analysis
 
+**I/P : 50 mV (V<sub>p</sub>) - 1 KHz**
+
 ![transient](https://github.com/user-attachments/assets/c87eb2dc-d0a7-4d6e-abda-c1b3e6296a3a)
 
 #### AC Analysis
@@ -104,8 +106,9 @@ Total Current = I = 10<sup>-3</sup>/1.8 A = 0.555 mA
 
 #### Transient Analysis
 
-![transient](https://github.com/user-attachments/assets/95fffd62-73ac-473f-b664-9b00ada49211)
+**I/P : 5 mV (V<sub>p</sub>) - 1 KHz**
 
+![transient](https://github.com/user-attachments/assets/95fffd62-73ac-473f-b664-9b00ada49211)
 
 #### AC Analysis
 
@@ -122,9 +125,9 @@ Total Current = I = 10<sup>-3</sup>/1.8 A = 0.555 mA
 
 ![DC_Op](https://github.com/user-attachments/assets/dfadc30a-dfb2-4622-8880-34182ede823c)
 
-
-
 #### Transient Analysis
+
+**I/P : 5 mV (V<sub>p</sub>) - 1 KHz**
 
 ![Transient](https://github.com/user-attachments/assets/0199a497-aa1a-4cb6-8c53-8f294e00af4b)
 
@@ -144,8 +147,9 @@ Total Current = I = 10<sup>-3</sup>/1.8 A = 0.555 mA
 ![Dc_op](https://github.com/user-attachments/assets/7a8614d4-4ef7-4513-8262-dc54c4765213)
 
 
-
 #### Transient Analysis
+
+**I/P : 10 mV (V<sub>p</sub>) - 1 KHz**
 
 ![transient](https://github.com/user-attachments/assets/b23aa9e2-9ec8-457e-9154-6e96b6da170c)
 
@@ -167,14 +171,15 @@ Total Current = I = 10<sup>-3</sup>/1.8 A = 0.555 mA
 
 #### Transient Analysis
 
-![Transient](https://github.com/user-attachments/assets/264704a8-b80e-4cc2-9440-80f63206c621)
+**I/P : 5 mV (V<sub>p</sub>) - 1 KHz**
 
+![Transient](https://github.com/user-attachments/assets/264704a8-b80e-4cc2-9440-80f63206c621)
 
 #### AC Analysis
 
 ![AC](https://github.com/user-attachments/assets/592d3ded-ce8c-4da1-b236-7a6974834b64)
 
-### CASE 2c: L = 500 nm (1 : 2)
+### CASE 2c: L = 1 um (1 : 2)
 #### Circuit Setup
 
 ![Circuit_Diagram](https://github.com/user-attachments/assets/936d9821-7894-49be-ade6-ef56e64d3979)
@@ -186,6 +191,8 @@ Total Current = I = 10<sup>-3</sup>/1.8 A = 0.555 mA
 
 
 #### Transient Analysis
+
+**I/P : 5 mV (V<sub>p</sub>) - 1 KHz**
 
 ![Transient](https://github.com/user-attachments/assets/282b4e19-b20a-4ea9-ac99-1873e8209d74)
 
@@ -219,6 +226,8 @@ Total Current = I = 10<sup>-3</sup>/1.8 A = 0.555 mA
 #### Transient Analysis
 
 ![Transient](https://github.com/user-attachments/assets/783b27cb-5401-444f-bf37-93b01d38b892)
+
+**I/P = 10 mV (V<sub>p</sub>) - 1 KHz**
 
 **Gain = -25.56 V/V**
 
